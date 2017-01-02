@@ -232,7 +232,7 @@ public class ServerExample extends Application{ //javaFX ∏ﬁ¿Œ≈¨∑°Ω∫∑Œ ∏∏µÈ±‚ ¿ß«
 				stopServer();
 			}
 		});
-		System.out.println(122);
+		
 		root.setBottom(btnStartStop);
 		
 		Scene scene = new Scene(root);
