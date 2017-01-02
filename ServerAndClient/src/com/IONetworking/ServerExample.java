@@ -43,11 +43,16 @@ public class ServerExample extends Application{ //javaFX ¸ŞÀÎÅ¬·¡½º·Î ¸¸µé±â À§Ç
 	//¼­¹ö ½ÃÀÛ ÄÚµå : ½ÃÀÛ¹öÆ° ´©¸£¸é ½ÇÇà. ¼­¹ö¼ÒÄÏÃ¤³Î »ı¼º ¹× Æ÷Æ®¹ÙÀÎµù, ¿¬°á ¼ö¶ôÄÚµå 
 	void startServer(){
 		
+		/*
 		//ExecutorService»ı¼º -> °´Ã¼¸¦ ¾ò±â À§ÇØ Excutors.newFixedThreadPool()¸Ş¼Òµå¸¦ È£Ãâ
 		executorService = Executors.newFixedThreadPool(
-				Runtime.getRuntime().availableProcessors() //½º·¹µå º´·ÄÃ³¸® ½ÃÄÑÁØ´Ù? cpuÄÚ¾îÀÇ ¼ö¸¸Å­ ½º·¹µå »ı¼ºÇØ¼­ °ü¸®ÇÔ
-		);
+				Runtime.getRuntime().availableProcessors()+1);//½º·¹µå º´·ÄÃ³¸® ½ÃÄÑÁØ´Ù? cpuÄÚ¾îÀÇ ¼ö¸¸Å­ ½º·¹µå »ı¼ºÇØ¼­ °ü¸®ÇÔ
+				System.out.println(Runtime.getRuntime().availableProcessors()+1);// ÃÖ´ë ½º·¹µå ¼ö°¡ 4 (·±Å¸ÀÓ»ó »ç¿ë°¡´ÉÇÑ ÇÁ·Î¼¼¼­¼ö·Î Á¦ÇÑ)
+		*/
 		
+		//ExecutorService»ı¼º -> °´Ã¼¸¦ ¾ò±â À§ÇØ Excutors.newFixedThreadPool()¸Ş¼Òµå¸¦ È£Ãâ
+	
+		executorService = Executors.newFixedThreadPool(100); //½º·¹µå 100°³ »ı¼º
 		
 		//¼­¹ö¼ÒÄÏ »ı¼º ¹× Æ÷Æ® ¹ÙÀÎµù(5001¹øÆ÷Æ®¿¡¼­ Å¬¶óÀÌ¾ğÆ®ÀÇ ¿¬°áÀ» ¼ö¶ôÇÏ´Â ServerSocketChannel »ı¼º) 
 		try {

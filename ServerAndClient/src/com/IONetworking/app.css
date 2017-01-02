@@ -1,20 +1,34 @@
 /*text-area 배경색 */
 
 .text-area{
-	-fx-background-color: gold;
+	-fx-background-color: #FFCCFF;
+	-fx-border-radius:20;
 }
 
 /*scroll-pane 배경색 */
-.text-area .scroll-pane .viewport{
-	-fx-background-color: transparent;
+.text-area .scroll-pane{
+	-fx-background-color: #FFCCFF;
 }
 
 /*viewport 배경색 */
 .text-area .scroll-pane .viewport{
-	-fx-background-color: transparent;	
+	-fx-background-color: #FF99FF;	
 }
 
 /*content 배경색 */
 .text-area .scroll-pane .content{
-	-fx-background-color: transparent;
+	-fx-background-color: #FFCCCC;
+}
+
+
+/*text-field 마우스 오버 효과주기 */
+.text-field:focused{
+	-fx-background-color: #9932cc;
+	-fx-text-fill:#ffffff;
+}
+Button:hover{
+	-fx-background-color:#9932cc;
+}
+Button:pressed{
+	-fx-background-color:#ff00ff;
 }

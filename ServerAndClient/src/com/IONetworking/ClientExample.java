@@ -1,8 +1,5 @@
 package com.IONetworking;
 
-
-
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -11,19 +8,24 @@ import java.net.Socket;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class ClientExample extends Application{ //JavaFX 메인 클래스로 만들기 위해 Application을 상속한다.
+	
 	//클라이언트 통신을 위한 Socket 필드 선언
 	Socket socket;
 	
 	void startClient(){ //연결시작코드 [start]버튼을 클릭하면 호출된다.
+		
 		Thread thread = new Thread(){ //스레드 생성
 			
 			@Override
@@ -84,6 +86,7 @@ public class ClientExample extends Application{ //JavaFX 메인 클래스로 만들기 위
 			}
 		}
 	}
+	
 	void send(String data){//[send]버튼을 클릭하면 호출 , 서버로 데이터를 보낸다. 
 		Thread thread = new Thread(){ //데이터를 서버로 보내는 새로운 작업 스레드 생성
 			@Override
@@ -94,7 +97,6 @@ public class ClientExample extends Application{ //JavaFX 메인 클래스로 만들기 위
 					outputStream.write(byteArr); ///바이트배열 매개값으로 해서 write() 메소드를 호출
 					outputStream.flush(); //출력스트림 내부 퍼버를 완전히 비우도록 flush()를 호출한다. 
 					Platform.runLater(()->displayText("[보내기 완료]")); 
-					
 				} catch (Exception e) {
 					Platform.runLater(()->displayText("[서버 통신 안됨]"));
 					stopClient();
@@ -102,6 +104,7 @@ public class ClientExample extends Application{ //JavaFX 메인 클래스로 만들기 위
 			}
 		};
 		thread.start(); //스레드 생성
+		
 	}
 	
 	////UI 생성코드 : 레이아웃을 구성하고, ClientExample을 실행시킨다. 
@@ -124,6 +127,17 @@ public class ClientExample extends Application{ //JavaFX 메인 클래스로 만들기 위
 		txtInput.setPrefSize(60, 30); 
 		BorderPane.setMargin(txtInput, new Insets(0,1,1,1));
 		
+		//엔터키 누르면 txtInput 안의 텍스트 내용을 전송시키기.
+		txtInput.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent ke){
+				//실행할 코드 
+				if(ke.getCode().equals(KeyCode.ENTER)){
+					send(txtInput.getText());
+				}
+			}
+		});
+		
 		btnConn = new Button("start");
 		btnConn.setPrefSize(60, 30);
 		
@@ -135,7 +149,7 @@ public class ClientExample extends Application{ //JavaFX 메인 클래스로 만들기 위
 				stopClient(); //stopClient메소드 실행
 			}
 		});
-		
+	
 		btnSend = new Button("send");
 		btnSend.setPrefSize(60 , 30);
 		btnSend.setDisable(true); //send버튼 기본적으로 비활성화 상태 
@@ -148,17 +162,18 @@ public class ClientExample extends Application{ //JavaFX 메인 클래스로 만들기 위
 		root.setBottom(bottom);
 		
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("app.css").toString());
+		scene.getStylesheets().add(getClass().getResource("app.css").toString()); //css 적용
 		
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Client");
 		primaryStage.setOnCloseRequest(event->stopClient()); // 윈도우 우측 상단 버튼 클릭했을 때 이벤트 처리 코드
-		
+	
 		primaryStage.show();
 	}
 	
 	void displayText(String text){ //TextArea에 문자열을 추가하는 메소드  
 		txtDisplay.appendText(text+"\n");
+		this.txtInput.setText(""); //엔터치고 나면 글자 치는 곳 다시 공백으로 하기.
 	}
 	
 	public static void main(String[] args){
