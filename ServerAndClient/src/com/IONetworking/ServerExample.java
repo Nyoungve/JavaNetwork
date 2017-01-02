@@ -233,6 +233,7 @@ public class ServerExample extends Application{ //javaFX ∏ﬁ¿Œ≈¨∑°Ω∫∑Œ ∏∏µÈ±‚ ¿ß«
 			}
 		});
 		
+		
 		root.setBottom(btnStartStop);
 		
 		Scene scene = new Scene(root);

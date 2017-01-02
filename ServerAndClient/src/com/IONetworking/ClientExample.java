@@ -87,6 +87,7 @@ public class ClientExample extends Application{ //JavaFX 메인 클래스로 만들기 위
 		}
 	}
 	
+	
 	void send(String data){//[send]버튼을 클릭하면 호출 , 서버로 데이터를 보낸다. 
 		Thread thread = new Thread(){ //데이터를 서버로 보내는 새로운 작업 스레드 생성
 			@Override
