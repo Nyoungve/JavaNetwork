@@ -104,7 +104,7 @@ public class ClientExample extends Application{ //JavaFX 메인 클래스로 만들기 위
 			}
 		};
 		thread.start(); //스레드 생성
-		
+		System.out.println(333);
 	}
 	
 	////UI 생성코드 : 레이아웃을 구성하고, ClientExample을 실행시킨다. 

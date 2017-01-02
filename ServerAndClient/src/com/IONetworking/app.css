@@ -20,7 +20,6 @@
 	-fx-background-color: #FFCCCC;
 }
 
-
 /*text-field 마우스 오버 효과주기 */
 .text-field:focused{
 	-fx-background-color: #9932cc;
