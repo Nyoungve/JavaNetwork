@@ -19,6 +19,10 @@ public class ComputerByteOrderExample {
 		
 		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(100).order(ByteOrder.nativeOrder()); 
 		System.out.println(byteBuffer);
+		
+		
+		
+		
 	}
 
 }
